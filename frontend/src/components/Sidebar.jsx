@@ -1,22 +1,19 @@
 import React from 'react';
-import { Compass, User, LogOut } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 
 const Sidebar = ({ user, logout, onNavigateToSelf }) => {
     return (
         <aside className="sidebar">
             <div className="sidebar-header">
-                <div className="sidebar-logo">▲</div>
-                <h2 className="sidebar-title">Genesis<span>Network</span></h2>
+                <h2 className="sidebar-title">Referral</h2>
             </div>
 
             <nav className="sidebar-nav">
                 <button className="nav-item active">
-                    <Compass size={20} />
-                    <span>Network Tree</span>
+                    Network Tree
                 </button>
                 <button className="nav-item" onClick={onNavigateToSelf}>
-                    <User size={20} />
-                    <span>My Position</span>
+                    My Position
                 </button>
             </nav>
 
@@ -29,7 +26,7 @@ const Sidebar = ({ user, logout, onNavigateToSelf }) => {
                     </div>
                 </div>
                 <button className="logout-btn" onClick={logout}>
-                    <LogOut size={18} />
+                    <LogOut size={16} />
                     <span>Logout</span>
                 </button>
             </div>

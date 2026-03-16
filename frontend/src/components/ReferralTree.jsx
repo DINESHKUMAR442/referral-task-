@@ -9,26 +9,20 @@ const ReferralTree = ({ data, onNodeClick, isViewingSelf, onReset }) => {
         <div className="referral-tree-wrapper">
             <div className="tree-header">
                 <div className="header-left">
-                    <h2>Network Architecture</h2>
+                    <h2>Network Tree</h2>
                     <p className="viewing-label">
-                        Currently viewing: <strong>{data.username}</strong>
+                        Viewing: <strong>{data.username}</strong>
                         {!isViewingSelf && (
                             <button className="reset-btn" onClick={onReset}>
-                                Return to My Position
+                                ← Back to my tree
                             </button>
                         )}
                     </p>
                 </div>
-                <div className="legend">
-                    <div className="legend-item"><span className="dot root"></span> Root</div>
-                    <div className="legend-item"><span className="dot a"></span> Position A</div>
-                    <div className="legend-item"><span className="dot b"></span> Position B</div>
-                    <div className="legend-item"><span className="dot c"></span> Position C</div>
-                </div>
             </div>
             <div className="tree-viewport">
                 <div className="tree-container">
-                    <TreeNode user={data} isRoot={true} onNodeClick={onNodeClick} />
+                    <TreeNode user={data} isRoot={true} onNodeClick={onNodeClick} onReset={onReset} />
                 </div>
             </div>
         </div>

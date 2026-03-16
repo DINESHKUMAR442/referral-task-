@@ -2,13 +2,10 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ReferralTree from '../components/ReferralTree';
 import Sidebar from '../components/Sidebar';
-import StatCard from '../components/StatCard';
 import apiClient from '../api/apiClient';
-import { Users, Compass, User } from 'lucide-react';
 
 const Dashboard = () => {
     const { user, logout } = useAuth();
-    const [profile, setProfile] = useState(null);
     const [treeData, setTreeData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [viewUid, setViewUid] = useState(null);
@@ -16,15 +13,11 @@ const Dashboard = () => {
     const fetchData = useCallback(async (uid) => {
         try {
             const targetUid = uid || user?.uid;
-            const [profileRes, treeRes] = await Promise.all([
-                apiClient.get('/user/profile'),
-                apiClient.get(`/tree/subtree/${targetUid}`)
-            ]);
-            setProfile(profileRes.data);
+            const treeRes = await apiClient.get(`/tree/subtree/${targetUid}`);
             setTreeData(treeRes.data);
             setLoading(false);
         } catch (err) {
-            console.error('Error fetching dashboard data', err);
+            console.error('Error fetching data', err);
             setLoading(false);
         }
     }, [user]);
@@ -59,8 +52,8 @@ const Dashboard = () => {
 
             <main className="dashboard-main">
                 <header className="dashboard-header">
-                    <h1 className="dashboard-title">Welcome back, {user?.username}</h1>
-                    <p className="dashboard-subtitle">Manage your hierarchical network and referrals.</p>
+                    <h1 className="dashboard-title">Welcome, {user?.username}</h1>
+                    <p className="dashboard-subtitle">Your referral network overview</p>
                 </header>
 
                 <section className="tree-section">

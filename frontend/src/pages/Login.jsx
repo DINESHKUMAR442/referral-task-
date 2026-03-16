@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuthLayout from '../components/AuthLayout';
 import apiClient from '../api/apiClient';
-import { LogIn } from 'lucide-react';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -14,6 +13,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
             const response = await apiClient.post('/auth/login', { username, password });
             login({ username: response.data.username, uid: response.data.uid }, response.data.token);
@@ -25,34 +25,37 @@ const Login = () => {
 
     return (
         <AuthLayout
-            title="Welcome Back"
-            subtitle="Login to your referral network"
-            footer={<span>Don't have an account? <Link to="/register">Register here</Link></span>}
+            title="Sign In"
+            subtitle="Enter your credentials to continue"
+            footer={<span>Don't have an account? <Link to="/register">Create one</Link></span>}
         >
             {error && <div className="auth-error">{error}</div>}
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Username</label>
+                    <label htmlFor="username">Username</label>
                     <input
+                        id="username"
                         type="text"
+                        placeholder="Enter your username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
+                        id="password"
                         type="password"
+                        placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
                 <button type="submit" className="auth-btn">
-                    <LogIn size={18} />
-                    <span>Submit Login</span>
+                    Sign In
                 </button>
             </form>
         </AuthLayout>
