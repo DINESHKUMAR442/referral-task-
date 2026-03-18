@@ -1,0 +1,71 @@
+﻿node.exe : npm error code ERESOLVE
+At C:\Program 
+Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpe 
+   cified: (npm error code ERESOLVE  
+  :String) [], RemoteException
+    + FullyQualifiedErrorId : Native 
+   CommandError
+ 
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: 
+eslint-plugin-react-hooks@4.6.2
+npm error Found: eslint@9.39.4
+npm error node_modules/eslint
+npm error   dev eslint@"^9.5.0" from 
+the root project
+npm error   peer eslint@"^6.0.0 || 
+^7.0.0 || >=8.0.0" from 
+@eslint-community/eslint-utils@4.9.1
+npm error   node_modules/@eslint-comm
+unity/eslint-utils
+npm error     @eslint-community/eslin
+t-utils@"^4.8.0" from eslint@9.39.4
+npm error   1 more 
+(eslint-plugin-react-refresh)
+npm error
+npm error Could not resolve 
+dependency:
+npm error peer eslint@"^3.0.0 || 
+^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 
+|| ^8.0.0-0" from 
+eslint-plugin-react-hooks@4.6.2
+npm error node_modules/eslint-plugin-
+react-hooks
+npm error   dev 
+eslint-plugin-react-hooks@"^4.6.2" 
+from the root project
+npm error
+npm error Conflicting peer 
+dependency: eslint@8.57.1
+npm error node_modules/eslint
+npm error   peer eslint@"^3.0.0 || 
+^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 
+|| ^8.0.0-0" from 
+eslint-plugin-react-hooks@4.6.2
+npm error   node_modules/eslint-plugi
+n-react-hooks
+npm error     dev 
+eslint-plugin-react-hooks@"^4.6.2" 
+from the root project
+npm error
+npm error Fix the upstream 
+dependency conflict, or retry
+npm error this command with --force 
+or --legacy-peer-deps
+npm error to accept an incorrect 
+(and potentially broken) dependency 
+resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\dines\AppData\Loca
+l\npm-cache\_logs\2026-03-18T09_44_49
+_346Z-eresolve-report.txt
+npm error A complete log of this run 
+can be found in: C:\Users\dines\AppDa
+ta\Local\npm-cache\_logs\2026-03-18T0
+9_44_49_346Z-debug-0.log
