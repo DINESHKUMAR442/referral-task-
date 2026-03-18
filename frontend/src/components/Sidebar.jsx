@@ -1,19 +1,24 @@
 import React from 'react';
-import { LogOut } from 'lucide-react';
+import { LogOut, LayoutDashboard, Users, X } from 'lucide-react';
 
-const Sidebar = ({ user, logout, onNavigateToSelf }) => {
+const Sidebar = ({ user, logout, onNavigateToSelf, isOpen, onClose }) => {
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="sidebar-header">
-                <h2 className="sidebar-title">Referral</h2>
+                <h2 className="sidebar-title">referral_task</h2>
+                <button className="mobile-close-btn" onClick={onClose}>
+                    <X size={20} />
+                </button>
             </div>
 
             <nav className="sidebar-nav">
-                <button className="nav-item active">
-                    Network Tree
+                <button className="nav-item active" onClick={onClose}>
+                    <LayoutDashboard size={20} />
+                    <span>Dashboard</span>
                 </button>
                 <button className="nav-item" onClick={onNavigateToSelf}>
-                    My Position
+                    <Users size={20} />
+                    <span>My Position</span>
                 </button>
             </nav>
 
@@ -26,7 +31,7 @@ const Sidebar = ({ user, logout, onNavigateToSelf }) => {
                     </div>
                 </div>
                 <button className="logout-btn" onClick={logout}>
-                    <LogOut size={16} />
+                    <LogOut size={18} />
                     <span>Logout</span>
                 </button>
             </div>

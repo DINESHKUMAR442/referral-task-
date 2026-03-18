@@ -1,5 +1,6 @@
 D:\Referral_task\backend\src\main\java\com\example\referral\config\SecurityConfig.java
 D:\Referral_task\backend\src\main\java\com\example\referral\controller\AuthController.java
+D:\Referral_task\backend\src\main\java\com\example\referral\controller\HealthController.java
 D:\Referral_task\backend\src\main\java\com\example\referral\controller\TreeController.java
 D:\Referral_task\backend\src\main\java\com\example\referral\controller\UserController.java
 D:\Referral_task\backend\src\main\java\com\example\referral\dto\AuthResponse.java

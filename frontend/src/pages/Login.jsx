@@ -4,9 +4,12 @@ import { useAuth } from '../context/AuthContext';
 import AuthLayout from '../components/AuthLayout';
 import apiClient from '../api/apiClient';
 
+import { Eye, EyeOff } from 'lucide-react';
+
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const { login } = useAuth();
     const navigate = useNavigate();
@@ -45,14 +48,24 @@ const Login = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                    <div className="password-input-wrapper">
+                        <input
+                            id="password"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <button
+                            type="button"
+                            className="password-toggle-btn"
+                            onClick={() => setShowPassword(!showPassword)}
+                            aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" className="auth-btn">
                     Sign In

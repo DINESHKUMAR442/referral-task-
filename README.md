@@ -1,48 +1,80 @@
 # TernaryConnect - Full-Stack Referral Tree System
 
-A production-ready referral management system featuring a 3x3 ternary tree structure with an atomic global placement engine.
+A production-ready referral management system featuring a **3x3 ternary tree structure** with an atomic global placement engine. This project provides a clean, professional dashboard for visualizing and traversing deep referral networks.
 
-## Tech Stack
-- **Frontend**: React.js (Vite), Axios, Lucide-React, CSS3 (Glassmorphism)
-- **Backend**: Java 17, Spring Boot 3.4, Spring Security (JWT), Spring Data JPA
-- **Database**: MySQL 8.0
-- **Orchestration**: Docker & Docker Compose
+## 🚀 Key Features
 
-## Features
-- **Atomic Placement Engine**: Implements the absolute 9-step global sequence (A→A, B→A, C→A, A→B, B→B, C→B, A→C, B→C, C→C).
-- **Subtree Visualizer**: Recursive tree rendering with color-coded slots (A=Blue, B=Purple, C=Green).
-- **Responsive Design**: Fluid layout adapts from horizontal tree to vertical branch stacking for mobile/tablet.
-- **Secure Auth**: JWT-based authentication with Bcrypt password hashing.
+- **Atomic Placement Engine**: Implements a strict global sequence for referral placement, ensuring balanced growth across all branches.
+- **Advanced Tree Navigation**:
+    - **Node-by-Node History**: Retrace your steps one level at a time using the navigation history stack.
+    - **Curved Connectors**: Smooth, organic curve lines for clear hierarchy visualization.
+    - **Subtree Traversal**: Click any node to drill down into its personal 3x3 tree.
+- **Premium Build UX**:
+    - **Clean Dark Theme**: Minimalist, high-contrast UI designed for clarity and reduced eye strain.
+    - **Password Security**: Interactive registration and login with visibility toggles.
+- **Secure Architecture**: JWT-based stateless authentication with BCrypt hashing.
+- **Dockerized**: Fully containerized environment for instant deployment.
 
-## Quick Start (Docker)
+## 🛠 Tech Stack
 
-1. **Clone the repository** (if applicable).
-2. **Ensure Docker is running** on your machine.
-3. **Run the application**:
+### Frontend
+- **Framework**: React.js (Vite)
+- **Routing**: React Router DOM (v6)
+- **API Client**: Axios
+- **Icons**: Lucide-React
+- **Styling**: Vanilla CSS (Flat Modern aesthetic)
+
+### Backend
+- **Framework**: Java 21 (JDK 21), Spring Boot 3.4.3
+- **Security**: Spring Security + JJWT (JSON Web Token)
+- **Data**: Spring Data JPA + MySQL 8.0
+- **Lombok**: Reduced boilerplate logic
+
+## 📦 Project Structure
+
+```text
+Referral_task/
+├── backend/                   # Spring Boot backend service
+│   ├── src/main/java          # Core logic, security, placement engine
+│   └── pom.xml                # Backend dependencies
+├── frontend/                  # React.js frontend application
+│   ├── src/components         # Reusable UI elements (TreeNode, ReferralTree)
+│   ├── src/pages              # Dashboard, Auth, Home pages
+│   └── package.json           # Frontend dependencies
+├── docker-compose.yml         # Container orchestration
+└── README.md                  # This file
+```
+
+## 🚥 Quick Start
+
+### 🐳 Via Docker (Recommended)
+1. Ensure Docker and Docker Compose are installed.
+2. Run:
    ```bash
    docker-compose up --build
    ```
-4. **Access the platform**:
-   - **Frontend**: [http://localhost:5173](http://localhost:5173)
-   - **Backend API**: [http://localhost:8080/api](http://localhost:8080/api)
+3. Access:
+   - **App**: [http://localhost:5173](http://localhost:5173)
+   - **API**: [http://localhost:8080](http://localhost:8080)
 
-## Local Development (Without Docker)
+### 🛠 Local Development (Manual)
 
-### Backend
-1. Navigate to `/backend`.
-2. Configure `application.properties` with your local MySQL credentials.
-3. Run: `./mvnw spring-boot:run`
+#### Backend
+```bash
+cd backend
+./mvnw spring-boot:run
+```
 
-### Frontend
-1. Navigate to `/frontend`.
-2. Install dependencies: `npm install`
-3. Start dev server: `npm run dev`
+#### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## API Documentation
-- `POST /api/auth/register`: Register with optional `referralUid`.
-- `POST /api/auth/login`: Login for JWT token.
-- `GET /api/user/profile`: Get current user stats.
-- `GET /api/tree/subtree/{uid}`: Get recursive 3x3 tree data.
+## 📖 Related Documentation
+- [Technical Guide](./TECHNICAL_GUIDE.md) - Deep dive into placement logic and API specs.
+- [Walkthrough](./walkthrough.md) - Visual guide of the application features.
 
 ---
-Built by TernaryConnect Architecture Team.
+Built by **TernaryConnect Architecture Team**.

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth = 0, branch = null }) => {
+const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, onBack, canGoBack, depth = 0, branch = null }) => {
     const [expanded, setExpanded] = useState(depth < 1); // Root + first level (A,B,C) always visible
     const currentBranch = depth === 0 ? null : (depth === 1 ? position : branch);
     const hasChildren = depth < 2;
@@ -21,8 +21,12 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth 
     const childPositions = ['A', 'B', 'C'];
 
     const handleClick = () => {
-        if (isRoot && onReset) {
-            onReset();
+        if (isRoot) {
+            if (canGoBack && onBack) {
+                onBack();
+            } else if (onReset) {
+                onReset();
+            }
             return;
         }
         // Depth 1 (A, B, C): navigate into this node's subtree
@@ -44,7 +48,7 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth 
                     <td colSpan={hasChildren && expanded ? childPositions.length * 2 : 1} className="node-td">
                         <div className="node-cell">
                             <div
-                                className={`node-circle ${isRoot ? 'root-circle' : ''} ${currentBranch ? `branch-${currentBranch.toLowerCase()}-bg` : ''} ${hasChildren ? 'expandable' : ''}`}
+                                className={`node-circle ${isRoot ? 'root-circle' : ''} ${currentBranch ? `branch-${currentBranch.toLowerCase()}` : ''} ${hasChildren ? 'expandable' : ''}`}
                                 onClick={handleClick}
                                 title={hasChildren ? (expanded ? 'Click to collapse' : 'Click to expand') : ''}
                             >
@@ -57,37 +61,28 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth 
 
                 {hasChildren && expanded && (
                     <>
-                        {/* Row 2: Vertical line going DOWN from parent */}
+                        {/* Row 2: Vertical line DOWN from parent */}
                         <tr>
                             <td colSpan={childPositions.length * 2} className="line-td">
                                 <div className="line-down"></div>
                             </td>
                         </tr>
 
-                        {/* Row 3: Horizontal line spanning across children */}
-                        <tr>
-                            {childPositions.map((label, idx) => (
-                                <React.Fragment key={label}>
-                                    <td className={`line-td ${idx === 0 ? 'line-left-empty' : 'line-left-full'}`}>
-                                        <div className={`line-h ${idx === 0 ? 'line-h-empty' : 'line-h-full'}`}></div>
-                                    </td>
-                                    <td className={`line-td ${idx === childPositions.length - 1 ? 'line-right-empty' : 'line-right-full'}`}>
-                                        <div className={`line-h ${idx === childPositions.length - 1 ? 'line-h-empty' : 'line-h-full'}`}></div>
-                                    </td>
-                                </React.Fragment>
-                            ))}
+                        {/* Row 3: Radiating SVG connectors to children */}
+                        <tr className="connector-row">
+                            <td colSpan={childPositions.length * 2} className="line-td radiating-connector-cell">
+                                <svg className="radiating-svg" viewBox="0 0 300 60" preserveAspectRatio="none">
+                                    {/* Orthogonal Rounded Path to A (Left) */}
+                                    <path d="M150,0 V20 Q150,30 140,30 H60 Q50,30 50,40 V60" className="branch-line branch-a" />
+                                    {/* Vertical Line to B (Middle) */}
+                                    <path d="M150,0 V60" className="branch-line branch-b" />
+                                    {/* Orthogonal Rounded Path to C (Right) */}
+                                    <path d="M150,0 V20 Q150,30 160,30 H240 Q250,30 250,40 V60" className="branch-line branch-c" />
+                                </svg>
+                            </td>
                         </tr>
 
-                        {/* Row 4: Vertical lines going DOWN into each child */}
-                        <tr>
-                            {childPositions.map((label) => (
-                                <td key={label} colSpan={2} className="line-td">
-                                    <div className="line-down"></div>
-                                </td>
-                            ))}
-                        </tr>
-
-                        {/* Row 5: The child nodes themselves */}
+                        {/* Row 4: Child nodes */}
                         <tr>
                             {childPositions.map((label) => {
                                 const child = user.children
@@ -100,6 +95,8 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth 
                                             position={label}
                                             onNodeClick={onNodeClick}
                                             onReset={onReset}
+                                            onBack={onBack}
+                                            canGoBack={canGoBack}
                                             depth={depth + 1}
                                             branch={currentBranch || label}
                                         />
