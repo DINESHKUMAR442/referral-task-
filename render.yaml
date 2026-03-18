@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: referral-backend
+    runtime: docker
+    context: backend
+    dockerfilePath: backend/Dockerfile
+    plan: free
+    envVars:
+      - key: DB_HOST
+        value: referral-db
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        value: referral_db
+      - key: DB_USER
+        value: root
+      - key: DB_PASS
+        value: password
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: pvt
+    name: referral-db
+    runtime: image
+    image: mysql:8.0
+    plan: free
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: password
+      - key: MYSQL_DATABASE
+        value: referral_db
+    disk:
+      name: mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
