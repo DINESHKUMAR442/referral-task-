@@ -7,35 +7,19 @@ services:
     plan: free
     envVars:
       - key: DB_HOST
-        value: referral-db
+        value: autorack.proxy.rlwy.net
       - key: DB_PORT
-        value: 3306
+        value: 35993
       - key: DB_NAME
-        value: referral_db
+        value: railway
       - key: DB_USER
         value: root
       - key: DB_PASS
-        value: password
+        value: wJfssrKpgaXPSpxqFuVDdTKCtzwJvWkV
       - key: JWT_SECRET
         generateValue: true
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:mysql://referral-db:3306/referral_db?allowPublicKeyRetrieval=true&useSSL=false
-
-  - type: pserv
-    name: referral-db
-    runtime: image
-    image:
-      url: mysql:8.0
-    plan: free
-    envVars:
-      - key: MYSQL_ROOT_PASSWORD
-        value: password
-      - key: MYSQL_DATABASE
-        value: referral_db
-    disk:
-      name: mysql-data
-      mountPath: /var/lib/mysql
-      sizeGB: 1
+        value: jdbc:mysql://autorack.proxy.rlwy.net:35993/railway?allowPublicKeyRetrieval=true&useSSL=false
 
   - type: web
     name: referral-frontend
