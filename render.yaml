@@ -21,7 +21,7 @@ services:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:mysql://referral-db:3306/referral_db?allowPublicKeyRetrieval=true&useSSL=false
 
-  - type: pvt
+  - type: pserv
     name: referral-db
     runtime: image
     image: mysql:8.0
