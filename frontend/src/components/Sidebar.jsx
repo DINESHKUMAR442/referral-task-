@@ -5,7 +5,10 @@ const Sidebar = ({ user, logout, onNavigateToSelf, isOpen, onClose }) => {
     return (
         <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="sidebar-header">
-                <h2 className="sidebar-title">referral_task</h2>
+                <div className="sidebar-logo">
+                    <LayoutDashboard size={24} />
+                    <h2 className="sidebar-title">referral_task</h2>
+                </div>
                 <button className="mobile-close-btn" onClick={onClose}>
                     <X size={20} />
                 </button>

@@ -1,17 +1,16 @@
 .referral-tree-wrapper {
-    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     background: transparent;
-    width: 100%;
-    color: #0f172a;
 }
 
 .tree-header {
+    padding: 0 0 2rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e2e8f0;
+    background: transparent;
 }
 
 .tree-header h2 {
@@ -35,6 +34,28 @@
 .viewing-label strong {
     color: #6366f1;
     margin-left: 0.4rem;
+}
+
+.tree-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: #ffffff;
+    border: none; /* Removed border */
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: none; /* Removed shadow */
+}
+
+.tree-action-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
 }
 
 .button-group {
@@ -267,31 +288,57 @@
    ============================================ */
 @media (max-width: 768px) {
     .referral-tree-wrapper {
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
-    .node-circle {
-        width: 55px;
-        height: 55px;
-        font-size: 0.65rem;
+    .tree-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .tree-controls {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .button-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .node-circle, .node-circle-placeholder {
+        width: 50px;
+        height: 50px;
+        font-size: 0.6rem;
         padding: 5px;
-        border-radius: 50%;
+        border-width: 1.5px;
     }
 
     .root-circle {
-        width: 65px;
-        height: 65px;
+        width: 60px;
+        height: 60px;
+        border-width: 3px;
     }
 
-    .line-td, .line-down {
-        height: 12px;
+    .line-td {
+        height: 40px; /* Reduced but enough for curves */
+    }
+
+    .connector-row {
+        height: 50px; /* Reduced but enough for curves */
+    }
+
+    .node-uid {
+        font-size: 0.55rem;
+        max-width: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .tree-viewport {
-        padding: 1rem 0 2rem;
-    }
-    
-    .node-uid {
-        font-size: 0.6rem;
+        padding: 1rem 0;
+        justify-content: flex-start; /* Start from left on mobile for better scroll */
     }
 }
