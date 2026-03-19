@@ -102,15 +102,17 @@
     width: 100%;
     overflow-x: auto;
     padding: 2rem 0 4rem;
-    display: flex;
-    justify-content: center;
+    display: block; /* Change from flex to block for standard margin centering */
+    text-align: center;
     scrollbar-width: thin;
-    scrollbar-color: #334155 transparent;
+    scrollbar-color: #cbd5e1 transparent;
 }
 
 .tree-container {
     display: inline-block;
-    min-width: max-content;
+    vertical-align: top;
+    margin: 0 auto;
+    text-align: left; /* Reset text-align inside the container */
 }
 
 /* ============================================
@@ -121,7 +123,7 @@
     border-collapse: collapse;
     margin: 0 auto;
     table-layout: fixed; /* Force equal columns */
-    width: auto;
+    width: 100%; /* Changed from auto to 100% for consistent nested alignment */
     min-width: fit-content;
 }
 
