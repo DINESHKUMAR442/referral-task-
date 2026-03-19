@@ -36,9 +36,8 @@ services:
       mountPath: /var/lib/mysql
       sizeGB: 1
 
-  - type: static
+  - type: static_site
     name: referral-frontend
-    runtime: static
     buildCommand: "cd frontend && npm install && npm run build"
     staticPublishDir: frontend/dist
     envVars:
