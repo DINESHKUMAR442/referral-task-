@@ -18,6 +18,8 @@ services:
         value: password
       - key: JWT_SECRET
         generateValue: true
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://referral-db:3306/referral_db?allowPublicKeyRetrieval=true&useSSL=false
 
   - type: pvt
     name: referral-db
@@ -33,3 +35,15 @@ services:
       name: mysql-data
       mountPath: /var/lib/mysql
       sizeGB: 1
+
+  - type: static
+    name: referral-frontend
+    runtime: static
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishDir: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: referral-backend
+          property: url
