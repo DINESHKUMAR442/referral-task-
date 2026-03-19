@@ -41,7 +41,7 @@ services:
     name: referral-frontend
     runtime: static
     buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishDir: frontend/dist
+    staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
         fromService:
