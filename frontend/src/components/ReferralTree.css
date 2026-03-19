@@ -158,7 +158,7 @@
     font-weight: 700;
     font-size: 0.75rem;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border: 2px solid #94a3b8; /* Slate 400 */
+    border: 2px solid #0f172a; /* Slate 900 (Black-ish) */
     text-align: center;
     word-break: break-all;
     padding: 10px;
@@ -186,10 +186,15 @@
     overflow: hidden;
 }
 
-/* Branch specific colors (Blue, Purple, Green) */
-.branch-a { border-color: #2563eb !important; stroke: #2563eb; color: #2563eb !important; background-color: transparent !important; }
-.branch-b { border-color: #7c3aed !important; stroke: #7c3aed; color: #7c3aed !important; background-color: transparent !important; }
-.branch-c { border-color: #16a34a !important; stroke: #16a34a; color: #16a34a !important; background-color: transparent !important; }
+/* Branch specific colors (Removed for unified black style) */
+.branch-a-text, .branch-b-text, .branch-c-text { color: #0f172a !important; }
+
+.branch-a, .branch-b, .branch-c { 
+    border-color: #0f172a !important; 
+    stroke: #0f172a !important; 
+    color: #0f172a !important; 
+    background-color: transparent !important; 
+}
 
 /* UID label below circle */
 .node-uid {
@@ -224,7 +229,7 @@
     width: 80px; /* Matched to node-circle */
     height: 80px; /* Matched to node-circle */
     border-radius: 50% !important;
-    border: 2px solid #cbd5e1;
+    border: 2px solid #0f172a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -253,7 +258,7 @@
 
 /* Radiating SVG Connector System */
 .connector-row {
-    height: 80px; /* Increased from 60px for more vertical breathing room */
+    height: 60px; /* Reduced from 80px for tighter joining */
 }
 
 .radiating-connector-cell {
@@ -269,8 +274,8 @@
 
 .branch-line {
     fill: none;
-    stroke: #94a3b8; /* Slate 400 */
-    stroke-width: 4;
+    stroke: #0f172a; /* Slate 900 (Black-ish) */
+    stroke-width: 3;
     stroke-linecap: round;
 }
 

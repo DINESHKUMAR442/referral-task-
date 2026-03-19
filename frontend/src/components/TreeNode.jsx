@@ -8,13 +8,11 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, onBack
     // Empty placeholder for unfilled positions
     if (!user) {
         return (
-            <td className={`node-td ${branch ? `branch-${branch.toLowerCase()}` : ''}`}>
-                <div className="node-cell">
-                    <div className="node-circle-placeholder">
-                        <span>{position}</span>
-                    </div>
+            <div className="node-cell">
+                <div className="node-circle-placeholder">
+                    <span>{position}</span>
                 </div>
-            </td>
+            </div>
         );
     }
 
@@ -45,7 +43,7 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, onBack
             <tbody>
                 {/* Row 1: The node itself */}
                 <tr>
-                    <td colSpan={hasChildren && expanded ? childPositions.length * 2 : 1} className="node-td">
+                    <td colSpan={childPositions.length} className="node-td">
                         <div className="node-cell">
                             <div
                                 className={`node-circle ${isRoot ? 'root-circle' : ''} ${currentBranch ? `branch-${currentBranch.toLowerCase()}` : ''} ${hasChildren ? 'expandable' : ''}`}
@@ -61,35 +59,31 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, onBack
 
                 {hasChildren && expanded && (
                     <>
-                        {/* Row 2: Vertical line DOWN from parent */}
-                        <tr>
-                            <td colSpan={childPositions.length * 2} className="line-td">
-                                <div className="line-down"></div>
-                            </td>
-                        </tr>
-
-                        {/* Row 3: Radiating SVG connectors to children */}
+                        {/* Row 2: Converged SVG Connector (Vertical + Branches) */}
                         <tr className="connector-row">
-                            <td colSpan={childPositions.length * 2} className="line-td radiating-connector-cell">
-                                <svg className="radiating-svg" viewBox="0 0 300 60" preserveAspectRatio="none">
-                                    {/* Curved Line to A (Left) */}
-                                    <path d="M150,0 C150,30 50,30 50,60" className="branch-line branch-a" />
+                            <td colSpan={childPositions.length} className="radiating-connector-cell">
+                                <svg className="radiating-svg" viewBox="0 0 300 100" preserveAspectRatio="none">
+                                    {/* Vertical core line from parent down to the split point */}
+                                    <line x1="150" y1="0" x2="150" y2="40" className="branch-line" />
+                                    
+                                    {/* Straight Line to A (Left) */}
+                                    <line x1="150" y1="40" x2="50" y2="100" className="branch-line branch-a" />
                                     {/* Vertical Line to B (Middle) */}
-                                    <path d="M150,0 L150,60" className="branch-line branch-b" />
-                                    {/* Curved Line to C (Right) */}
-                                    <path d="M150,0 C150,30 250,30 250,60" className="branch-line branch-c" />
+                                    <line x1="150" y1="40" x2="150" y2="100" className="branch-line branch-b" />
+                                    {/* Straight Line to C (Right) */}
+                                    <line x1="150" y1="40" x2="250" y2="100" className="branch-line branch-c" />
                                 </svg>
                             </td>
                         </tr>
 
-                        {/* Row 4: Child nodes */}
+                        {/* Row 3: Child nodes */}
                         <tr>
                             {childPositions.map((label) => {
                                 const child = user.children
                                     ? user.children.find(c => c.position === label)
                                     : null;
                                 return (
-                                    <td key={label} colSpan={2} className="child-td">
+                                    <td key={label} className="child-td">
                                         <TreeNode
                                             user={child}
                                             position={label}
