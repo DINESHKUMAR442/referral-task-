@@ -22,9 +22,11 @@ com\example\referral\repository\TreePositionRepository.class
 com\example\referral\repository\ReferralRelationshipRepository.class
 com\example\referral\dto\UserProfileDTO.class
 com\example\referral\controller\HealthController.class
+com\example\referral\controller\DebugController.class
 com\example\referral\model\TreePosition.class
 com\example\referral\service\TreeService.class
 com\example\referral\service\AuthService.class
 com\example\referral\dto\RegisterRequest.class
 com\example\referral\dto\LoginRequest.class
+com\example\referral\exception\GlobalExceptionHandler.class
 com\example\referral\model\TreePosition$TreePositionBuilder.class

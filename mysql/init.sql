@@ -1,5 +1,13 @@
 CREATE DATABASE IF NOT EXISTS referral_db;
+
 USE referral_db;
+drop table if exists users;
+
+drop table if exists tree_positions;
+
+drop table if exists referral_relationships;
+
+drop table if exists global_placement_state;
 
 -- Users table: core identity and auth
 CREATE TABLE IF NOT EXISTS users (
@@ -20,11 +28,14 @@ CREATE TABLE IF NOT EXISTS tree_positions (
     position_name ENUM('A', 'B', 'C') DEFAULT NULL, -- NULL for root
     level INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (parent_id) REFERENCES users(id) ON DELETE SET NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (parent_id) REFERENCES users (id) ON DELETE SET NULL,
     INDEX idx_parent (parent_id),
     INDEX idx_level (level)
 );
+
+ALTER TABLE tree_positions
+ADD UNIQUE INDEX idx_unique_placement (parent_id, position_name);
 
 -- Referral relationships: tracks who actually referred the user (ownership)
 CREATE TABLE IF NOT EXISTS referral_relationships (
@@ -33,8 +44,8 @@ CREATE TABLE IF NOT EXISTS referral_relationships (
     referred_id BIGINT NOT NULL UNIQUE,
     placement_order INT NOT NULL, -- Global order for metrics
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (referrer_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (referred_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (referrer_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (referred_id) REFERENCES users (id) ON DELETE CASCADE,
     INDEX idx_referrer (referrer_id)
 );
 
@@ -45,4 +56,6 @@ CREATE TABLE IF NOT EXISTS global_placement_state (
     next_position_index INT DEFAULT 0 -- 0-8 for the A->A...C->C cycle
 );
 
-INSERT IGNORE INTO global_placement_state (id, next_position_index) VALUES (1, 0);
+INSERT IGNORE INTO
+    global_placement_state (id, next_position_index)
+VALUES (1, 0);
