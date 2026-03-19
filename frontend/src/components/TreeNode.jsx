@@ -72,12 +72,12 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, onBack
                         <tr className="connector-row">
                             <td colSpan={childPositions.length * 2} className="line-td radiating-connector-cell">
                                 <svg className="radiating-svg" viewBox="0 0 300 60" preserveAspectRatio="none">
-                                    {/* Orthogonal Rounded Path to A (Left) */}
-                                    <path d="M150,0 V20 Q150,30 140,30 H60 Q50,30 50,40 V60" className="branch-line branch-a" />
+                                    {/* Curved Line to A (Left) */}
+                                    <path d="M150,0 C150,30 50,30 50,60" className="branch-line branch-a" />
                                     {/* Vertical Line to B (Middle) */}
-                                    <path d="M150,0 V60" className="branch-line branch-b" />
-                                    {/* Orthogonal Rounded Path to C (Right) */}
-                                    <path d="M150,0 V20 Q150,30 160,30 H240 Q250,30 250,40 V60" className="branch-line branch-c" />
+                                    <path d="M150,0 L150,60" className="branch-line branch-b" />
+                                    {/* Curved Line to C (Right) */}
+                                    <path d="M150,0 C150,30 250,30 250,60" className="branch-line branch-c" />
                                 </svg>
                             </td>
                         </tr>
