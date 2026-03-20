@@ -7,7 +7,7 @@ const Sidebar = ({ user, logout, onNavigateToSelf, isOpen, onClose }) => {
             <div className="sidebar-header">
                 <div className="sidebar-logo">
                     <LayoutDashboard size={24} />
-                    <h2 className="sidebar-title">referral_task</h2>
+                    <h2 className="sidebar-title">Referral Task</h2>
                 </div>
                 <button className="mobile-close-btn" onClick={onClose}>
                     <X size={20} />

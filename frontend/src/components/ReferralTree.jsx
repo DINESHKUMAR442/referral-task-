@@ -8,6 +8,11 @@ const ReferralTree = ({ data, onNodeClick, isViewingSelf, onReset, onBack, canGo
 
     return (
         <div className="referral-tree-wrapper">
+            {/* Global SVG Definitions for gradients used in TreeNodes */}
+            <svg height="0" width="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
+                {/* Gradients removed for minimalist black lines */}
+            </svg>
+
             <div className="tree-header">
                 <div className="header-left">
                     <h2>Network Tree</h2>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const StatCard = ({ icon: Icon, label, value }) => {
+const StatCard = ({ icon: Icon, label, value, color = 'blue' }) => {
     return (
         <div className="stat-card">
-            <div className="stat-icon">
+            <div className={`stat-icon icon-${color}`}>
                 <Icon size={24} />
             </div>
             <div className="stat-info">

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ReferralTree from '../components/ReferralTree';
 import Sidebar from '../components/Sidebar';
-import { Menu } from 'lucide-react';
+import StatCard from '../components/StatCard';
+import { Menu, Users, UserPlus, FolderTree } from 'lucide-react';
 import apiClient from '../api/apiClient';
 
 const Dashboard = () => {
@@ -63,7 +64,7 @@ const Dashboard = () => {
                 <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(true)}>
                     <Menu size={24} />
                 </button>
-                <div className="mobile-logo">referral_task</div>
+                <div className="mobile-logo">Referral Task</div>
                 <div style={{ width: 24 }}></div> {/* Balance spacer */}
             </header>
 
@@ -85,6 +86,7 @@ const Dashboard = () => {
                     <h1 className="dashboard-title">Welcome, {user?.username}</h1>
                     <p className="dashboard-subtitle">Your referral network overview</p>
                 </header>
+
 
                 <section className="tree-section">
                     {treeData && (
